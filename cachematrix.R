@@ -1,4 +1,4 @@
-## The first function, makeVector creates a special "vector", which is really a list containing a function to
+# The first function, makeVector creates a special "vector", which is really a list containing a function to
 
 # set the value of the vector
 # get the value of the vector
@@ -23,10 +23,12 @@ makeCacheMatrix <- function(x = matrix()) {
 
 cacheSolve <- function(x, ...) {
   inv <- x$getinv()
+## function below test for null inverse matrix and retrieves data
   if(!is.null(inv)) {
     print ("retriving cached data.")
     return(inv)
   }
+## function below solves for inverse and makes result of "solve" the "inv"
   data <- x$get()
   inv <- solve(data)
   x$makeinv(inv)
@@ -37,13 +39,14 @@ cacheSolve <- function(x, ...) {
 # Test run 
 
 #> B = matrix(c(9, -3, -3, 9), nrow=2, ncol=2) 
-#> m = makeCacheMatrix(B)
-#> m$get()
+#> z = makeCacheMatrix(B)
+#> z$get()
 #[,1] [,2]
 #[1,]    9   -3
 #[2,]   -3    9
-#> cacheSolve(m)
+#> cacheSolve(z)
 #[,1]       [,2]
 #[1,] 0.12500000 0.04166667
 #[2,] 0.04166667 0.12500000
+
 
